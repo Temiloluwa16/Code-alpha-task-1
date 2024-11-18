@@ -1,0 +1,3 @@
+{
+    "mongoURI": "mongodb+srv://laurabolade:<db_password>@cluster0.3uqmu.mongodb.net/"
+}
