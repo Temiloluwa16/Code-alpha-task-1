@@ -1,12 +1,24 @@
+import dotenv from 'dotenv';
 import express, { urlencoded } from 'express';
-import { connect } from 'mongoose';
-import ShortUrl from './models/shortUrl';
+import mongoose, { connect } from 'mongoose';
+import ShortUrl from './models/shortUrl.js';
 
 const app = express();
+dotenv.config();
 
+const mongoUri = process.env.MONGODB_URI;
+mongoose.set('debug', true);
 // Connect to MongoDB
-connect('mongodb://127.0.0.1:27017/urlShortener');
-
+mongoose.connect(mongoUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((err) => {
+    console.error('Error connecting to MongoDB', err);
+  });
 // Middleware
 app.use(urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
