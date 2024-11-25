@@ -9,10 +9,7 @@ dotenv.config();
 const mongoUri = process.env.MONGODB_URI;
 mongoose.set('debug', true);
 // Connect to MongoDB
-mongoose.connect(mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+mongoose.connect(mongoUri)
   .then(() => {
     console.log('Connected to MongoDB');
   })
